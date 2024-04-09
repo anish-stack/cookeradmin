@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImageModal from './ImageModal';
 import { Link } from 'react-router-dom';
-
+import toast from 'react-hot-toast'
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
     productName: "",
@@ -153,6 +153,7 @@ const CreateProduct = () => {
       console.log(formData)
       const response = await axios.post('https://api.camrosteel.com/api/v1/create-product', formData);
       console.log(response.data);
+      toast.success("Product Created Successfull")
     } catch (error) {
       console.error('Error creating product:', error);
     }
@@ -189,8 +190,8 @@ const CreateProduct = () => {
           <div className='w-1/2'>
             <select
               id="tags"
-              name="selectedTag"
-              value={formData.selectedTag}
+              name="property"
+              value={formData.property}
               onChange={handleChange}
               className="block w-full border-[1px] p-2 mt-1 rounded-md border-gray-900 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
             >
